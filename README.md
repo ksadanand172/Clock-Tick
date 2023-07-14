@@ -1,16 +1,27 @@
-# neu_clock
+# NEU CLOCK
 
-A new Flutter project.
+This Flutter project demonstrates how to create an analog clock and a digital clock. The analog clock uses the transform property of the Container widget to rotate the hands of the clock. The digital clock uses a CustomPainter to create custom fonts for the numbers.
 
-## Getting Started
+## How to use
 
-This project is a starting point for a Flutter application.
+To run this project, you will need to have Flutter installed on your computer. Once you have Flutter installed, you can run the project by following these steps:
 
-A few resources to get you started if this is your first Flutter project:
+- Clone the repository to your computer.
+- Open the project in your favorite IDE.
+- Run the project by pressing F5.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Features
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Analog clock with rotating hands.
+- Digital clock with custom fonts.
+- Uses transform property of Container widget.
+- Uses CustomPainter to create custom fonts.
+
+## To-do
+
+- Add more customization and animation.
+- Add a date display to the digital clock.
+
+### Author
+[Kunwar Sadananand](https://www.linkedin.com/in/ksadanand/)
+
