@@ -90,18 +90,21 @@ class _TicTicTickerState extends State<TicTicTicker> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          if (!isStarted) {
-            _startCounter();
-          } else {
-            _stopCounter();
-          }
-        },
-        tooltip: 'Increment',
-        icon: Icon(isStarted ? Icons.stop_outlined : Icons.play_arrow_outlined),
-        backgroundColor: const Color(0xff9980fa),
-        label: Text(isStarted ? "Stop" : "Start"),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 20),
+        child: FloatingActionButton.extended(
+          onPressed: () {
+            if (!isStarted) {
+              _startCounter();
+            } else {
+              _stopCounter();
+            }
+          },
+          tooltip: 'Increment',
+          icon: Icon(isStarted ? Icons.stop_outlined : Icons.play_arrow_outlined),
+          backgroundColor: const Color(0xff9980fa),
+          label: Text(isStarted ? "Stop" : "Start"),
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
