@@ -12,10 +12,11 @@ To run this project, you will need to have Flutter installed on your computer. O
 
 ## Features
 
-- Analog clock with rotating hands.
+- Analog clock with pendulum.
 - Digital clock with custom fonts.
-- Uses transform property of Container widget.
-- Uses CustomPainter to create custom fonts.
+- Start / Stop button for clock time.
+- Uses transform property of Container widget to rotate.
+- Used CustomPainter to create custom digital fonts.
 
 ## To-do
 
