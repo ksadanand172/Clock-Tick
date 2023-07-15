@@ -1,75 +1,104 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:neu_clock/clcok_ticker/pendulum_widget.dart';
 
 class AnalogClock extends StatefulWidget {
   final DateTime now;
+  final bool isStarted;
 
-  const AnalogClock({Key? key, required this.now}) : super(key: key);
+  const AnalogClock({Key? key, required this.now, this.isStarted = false})
+      : super(key: key);
 
   @override
   State<AnalogClock> createState() => _AnalogClockState();
 }
 
-class _AnalogClockState extends State<AnalogClock> {
+class _AnalogClockState extends State<AnalogClock>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+
+  @override
+  void initState() {
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: const Color(0xffefeeee),
-      alignment: const Alignment(0, -0.6),
-      transformAlignment: Alignment.center,
-      child: Container(
-        color: const Color(0xffefeeee),
-        child: Container(
-          width: 224,
-          height: 224,
-          decoration: BoxDecoration(
-            color: const Color(0xffefeeee),
-            borderRadius: BorderRadius.circular(133),
-            gradient: const LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Color(0xffffffff),
-                Color(0xffcdd1d4),
-              ],
-            ),
-            boxShadow: const [
-              BoxShadow(
-                color: Color(0xffffffff),
-                offset: Offset(-33.2, -33.2),
-                blurRadius: 38,
-                spreadRadius: 0.0,
-              ),
-              BoxShadow(
-                color: Color(0xffcdd1d4),
-                offset: Offset(33.2, 33.2),
-                blurRadius: 38,
-                spreadRadius: 0.0,
-              ),
-            ],
-          ),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              ...List.generate(
-                12,
-                    (index) {
-                  return _HoursStop(
-                    turnAngle: 2 * pi * (index / 12),
-                  );
-                },
-              ),
-              SecondsHand(now: widget.now),
-              MinutesHand(now: widget.now),
-              HoursHand(now: widget.now),
-              const CircleAvatar(
-                radius: 10,
-                backgroundColor: Color(0xff9980fa),
-              ),
-            ],
+    if (widget.now.second % 2 == 0) {
+      _animationController.forward();
+    } else {
+      _animationController.reverse();
+    }
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Positioned(
+          right: MediaQuery.of(context).size.width/2 + 10,
+          child: Pendulum(
+            animationController: _animationController,
+            isStarted: widget.isStarted,
           ),
         ),
-      ),
+        Container(
+          // color: const Color(0xffefeeee),
+          alignment: const Alignment(0, 0),
+          transformAlignment: Alignment.center,
+          child: Container(
+            width: 224,
+            height: 224,
+            decoration: BoxDecoration(
+              color: const Color(0xffefeeee),
+              borderRadius: BorderRadius.circular(133),
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color(0xffffffff),
+                  Color(0xffcdd1d4),
+                ],
+              ),
+              boxShadow: const [
+                BoxShadow(
+                  color: Color(0xffffffff),
+                  offset: Offset(-33.2, -33.2),
+                  blurRadius: 38,
+                  spreadRadius: 0.0,
+                ),
+                BoxShadow(
+                  color: Color(0xffcdd1d4),
+                  offset: Offset(33.2, 33.2),
+                  blurRadius: 38,
+                  spreadRadius: 0.0,
+                ),
+              ],
+            ),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                ...List.generate(
+                  12,
+                  (index) {
+                    return _HoursStop(
+                      turnAngle: 2 * pi * (index / 12),
+                    );
+                  },
+                ),
+                SecondsHand(now: widget.now),
+                MinutesHand(now: widget.now),
+                HoursHand(now: widget.now),
+                const CircleAvatar(
+                  radius: 10,
+                  backgroundColor: Color(0xff9980fa),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -163,7 +192,7 @@ class HoursHand extends StatelessWidget {
         ),
         Container(
           height: 3,
-          width: 90,
+          width: 80,
           decoration: BoxDecoration(
             color: Colors.black,
             borderRadius: BorderRadius.circular(2),
@@ -173,7 +202,7 @@ class HoursHand extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          width: 22,
+          width: 32,
         ),
       ],
     );

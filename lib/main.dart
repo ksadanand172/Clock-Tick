@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:neu_clock/clcok_ticker/analog_clock_body.dart';
 import 'package:neu_clock/clcok_ticker/digital_clock_body.dart';
 
@@ -13,6 +14,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //To hide status or notification bar
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
@@ -78,15 +81,21 @@ class _TicTicTickerState extends State<TicTicTicker> {
         title: Text(widget.title),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          AnalogClock(now: now),
+          AnalogClock(
+            now: now,
+            isStarted: isStarted,
+          ),
           const SizedBox(
             height: 100,
           ),
           DigitalClock(
             now: now,
             isStarted: isStarted,
+          ),
+          const SizedBox(
+            height: 120,
           ),
         ],
       ),
@@ -100,8 +109,9 @@ class _TicTicTickerState extends State<TicTicTicker> {
               _stopCounter();
             }
           },
-          tooltip: 'Increment',
-          icon: Icon(isStarted ? Icons.stop_outlined : Icons.play_arrow_outlined),
+          tooltip: 'Start / Stop',
+          icon:
+              Icon(isStarted ? Icons.stop_outlined : Icons.play_arrow_outlined),
           backgroundColor: const Color(0xff9980fa),
           label: Text(isStarted ? "Stop" : "Start"),
         ),
