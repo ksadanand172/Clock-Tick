@@ -48,7 +48,7 @@ class _PendulumWeigh extends StatelessWidget {
       height: 20,
       decoration: BoxDecoration(
         color: Colors.orange,
-        borderRadius: BorderRadius.circular(64),
+        borderRadius: BorderRadius.circular(54),
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -60,13 +60,13 @@ class _PendulumWeigh extends StatelessWidget {
         boxShadow: const [
           BoxShadow(
             color: Color(0xffffffff),
-            offset: Offset(-.82, -.82),
+            offset: Offset(-0.82, -0.82),
             blurRadius: 4,
             spreadRadius: 0.0,
           ),
           BoxShadow(
             color: Color(0xffbebdbd),
-            offset: Offset(.82, .82),
+            offset: Offset(0.82, 0.82),
             blurRadius: 4,
             spreadRadius: 0.0,
           ),
