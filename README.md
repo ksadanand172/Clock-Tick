@@ -2,6 +2,10 @@
 
 This Flutter project demonstrates how to create an analog clock and a digital clock. The analog clock uses the transform property of the Container widget to rotate the hands of the clock. The digital clock uses a CustomPainter to create custom fonts for the numbers.
 
+demo:
+
+![Alt Text](https://i.postimg.cc/zB75y5Bh/neu-clock.gif)
+
 ## How to use
 
 To run this project, you will need to have Flutter installed on your computer. Once you have Flutter installed, you can run the project by following these steps:
